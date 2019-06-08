@@ -44,7 +44,7 @@ public class ViewController {
 	@FXML
 	Label historyLabel;
 	
-	String zeroOsztasMsg = "Nullaval nem lehet osztani...";
+	String zeroOsztasMsg = "divide by zero";
 		
 	boolean lastActionIsOperationSign = false;
 	
