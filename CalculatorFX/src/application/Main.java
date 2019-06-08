@@ -13,9 +13,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 			Parent root = (AnchorPane) FXMLLoader.load(getClass().getResource("View.fxml"));
-			Scene scene = new Scene(root,600,600);
+			Scene scene = new Scene(root,290,370);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Calculator");
 			primaryStage.show();
 	}
 	

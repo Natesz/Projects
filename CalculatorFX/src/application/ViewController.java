@@ -214,41 +214,41 @@ public class ViewController {
 	
 	public String addition() {
 		
-		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
-		BigInteger secondNumber = new BigInteger(resultLabel.getText());
-		BigInteger result = firstNumber.add(secondNumber);
+		double firstNumber = Double.parseDouble(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		double secondNumber = Double.parseDouble(resultLabel.getText());
+		double result = firstNumber + secondNumber;
 		
 		return result+"";
 	}
 	
 	public String substraction() {
 		
-		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
-		BigInteger secondNumber = new BigInteger(resultLabel.getText());
-		BigInteger result = firstNumber.subtract(secondNumber);
+		double firstNumber = Double.parseDouble(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		double secondNumber = Double.parseDouble(resultLabel.getText());
+		double result = firstNumber - secondNumber;
 		
 		return result+"";
 	}
 	
 	public String multiplication() {
 
-		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
-		BigInteger secondNumber = new BigInteger(resultLabel.getText());
-		BigInteger result = firstNumber.multiply(secondNumber);
+		double firstNumber = Double.parseDouble(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		double secondNumber = Double.parseDouble(resultLabel.getText());
+		double result = firstNumber * secondNumber;
 		
 		return result+"";
 	}
 	
 	public String division() {
 
-		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		double firstNumber = Double.parseDouble(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
 		
 		if(resultLabel.getText().equals("0")) {
 			return zeroOsztasMsg;
 		}
 		
-		BigInteger secondNumber = new BigInteger(resultLabel.getText());
-		BigInteger result = firstNumber.divide(secondNumber);
+		double secondNumber = Double.parseDouble(resultLabel.getText());
+		double result = firstNumber / secondNumber;
 		
 		return result+"";			
 	}
