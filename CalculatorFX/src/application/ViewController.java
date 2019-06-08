@@ -1,13 +1,10 @@
 package application;
 
-import java.awt.event.ActionListener;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import java.math.BigInteger;
 
 public class ViewController {
 	@FXML
@@ -45,29 +42,14 @@ public class ViewController {
 	@FXML
 	Label resultLabel;
 	@FXML
-	Label calculationHistoryLabel;
+	Label historyLabel;
 	
-	String zeroOsztasMsg = "nobnob nullaval osztani...";
-	String tooBigNumberMsg = "nobnob ekkora szamot nem ismerek";
-	
-	boolean lastActionIsOperationSignal = false;
-	
-	public void showNumberInResult(String pushedButton) {
+	String zeroOsztasMsg = "Nullaval nem lehet osztani...";
 		
-		if(lastActionIsOperationSignal) {
-			resultLabel.setText("");
-			resultLabel.setText(resultLabel.getText()+pushedButton);
-			lastActionIsOperationSignal = false;
-		}else {
-			if(resultLabel.getText().equals("0")) {
-				resultLabel.setText("");
-			}
-			resultLabel.setText(resultLabel.getText()+pushedButton);
-		}
-	}
+	boolean lastActionIsOperationSign = false;
 	
 	public void clearAction(ActionEvent event) {
-		calculationHistoryLabel.setText("");
+		historyLabel.setText("");
 		resultLabel.setText("0");
 	}
 	
@@ -110,8 +92,15 @@ public class ViewController {
 	public void number0Action(ActionEvent event) {
 		if(!resultLabel.getText().equals("0")) {
 			showNumberInResult("0");
-		}
-		
+		}		
+	}
+	
+	public void moveResultToHistory(String muveletjel) {
+		historyLabel.setText(resultLabel.getText()+muveletjel);
+	}
+	
+	public void setLastCharInHistory(String muvelet) {
+		historyLabel.setText(historyLabel.getText().substring(0,historyLabel.getText().length()-1)+muvelet);
 	}
 	
 	public void checkZeroDivMsg(ActionEvent event) {
@@ -119,190 +108,162 @@ public class ViewController {
 			clearAction(event);
 		}
 	}
-	
-	public void checkTooBigNumberMsg(ActionEvent event) {
-		if(resultLabel.getText().equals(tooBigNumberMsg)) {
-			clearAction(event);
-		}
-	}
-	
+		
 	public void clickPlusButton(ActionEvent event) {
 		checkZeroDivMsg(event);
-		checkTooBigNumberMsg(event);
-		
-		if(calculationHistoryLabel.getText().equals("")) {
+				
+		if(historyLabel.getText().equals("")) {
 			moveResultToHistory("+");	
-			lastActionIsOperationSignal = true;
-		}else if(!lastActionIsOperationSignal) {
+			lastActionIsOperationSign = true;
+		}else if(!lastActionIsOperationSign) {
 				
 			egyenlo();
 			moveResultToHistory("+");
-			lastActionIsOperationSignal = true;
+			lastActionIsOperationSign = true;
 		}else {
 			setLastCharInHistory("+");
-		}
-		
+		}	
 	}
 	
-	public void moveResultToHistory(String muveletjel) {
-		calculationHistoryLabel.setText(resultLabel.getText()+muveletjel);
-	}
-	
-	public void setLastCharInHistory(String muvelet) {
-		calculationHistoryLabel.setText(calculationHistoryLabel.getText().substring(0,calculationHistoryLabel.getText().length()-1)+muvelet);
-	}
-	
-	public void minusAction(ActionEvent event) {
+	public void clickMinusButton(ActionEvent event) {
 		checkZeroDivMsg(event);
-		checkTooBigNumberMsg(event);
-		
-		if(calculationHistoryLabel.getText().equals("")) {
+				
+		if(historyLabel.getText().equals("")) {
 			moveResultToHistory("-");	
-			lastActionIsOperationSignal = true;
+			lastActionIsOperationSign = true;
 		}else
 		
-		if(!lastActionIsOperationSignal) {
+		if(!lastActionIsOperationSign) {
 				
 			egyenlo();
 			moveResultToHistory("-");
-			lastActionIsOperationSignal = true;
+			lastActionIsOperationSign = true;
 		}else {
 			setLastCharInHistory("-");
 		}
 	}
 	
-	public void osztasAction(ActionEvent event) {
+	public void clickDivideButton(ActionEvent event) {
 		checkZeroDivMsg(event);
-		checkTooBigNumberMsg(event);
-		
-		if(calculationHistoryLabel.getText().equals("")) {
-			calculationHistoryLabel.setText(resultLabel.getText()+"/");	
-			lastActionIsOperationSignal = true;
+				
+		if(historyLabel.getText().equals("")) {
+			historyLabel.setText(resultLabel.getText()+"/");	
+			lastActionIsOperationSign = true;
 		}else
 		
-		if(!lastActionIsOperationSignal) {
-				
+		if(!lastActionIsOperationSign) {				
 			egyenlo();
-			calculationHistoryLabel.setText(resultLabel.getText()+"/");
-			lastActionIsOperationSignal = true;
+			historyLabel.setText(resultLabel.getText()+"/");
+			lastActionIsOperationSign = true;
 		}else {
 			setLastCharInHistory("/");
 		}
 	}
 	
-	public void szorzasAction(ActionEvent event) {
+	public void clickMultiplyButton(ActionEvent event) {
 		checkZeroDivMsg(event);
-		checkTooBigNumberMsg(event);
-		
-		if(calculationHistoryLabel.getText().equals("")) {
-			calculationHistoryLabel.setText(resultLabel.getText()+"*");	
-			lastActionIsOperationSignal = true;
+				
+		if(historyLabel.getText().equals("")) {
+			historyLabel.setText(resultLabel.getText()+"*");	
+			lastActionIsOperationSign = true;
 		}else
 		
-		if(!lastActionIsOperationSignal /*&& calculationHistoryLabel.getText().substring(calculationHistoryLabel.getText().length()-1).equals("*")*/) {
+		if(!lastActionIsOperationSign) {
 				
 			egyenlo();
-			calculationHistoryLabel.setText(resultLabel.getText()+"*");
-			lastActionIsOperationSignal = true;
+			historyLabel.setText(resultLabel.getText()+"*");
+			lastActionIsOperationSign = true;
 		}else {
 			setLastCharInHistory("*");
 		}
 	}
 	
-	public void egyenloAction(ActionEvent event) {
+	public void clickEqualButton(ActionEvent event) {
 		if(resultLabel.getText().equals(zeroOsztasMsg)) {
 			clearAction(event);
 		}
 		
-		if(calculationHistoryLabel.getText().length()<1) {
+		if(historyLabel.getText().length()<1) {
 			return;
 		}
 		
 		egyenlo();
-		calculationHistoryLabel.setText("");
-		lastActionIsOperationSignal = true;
+		historyLabel.setText("");
+		lastActionIsOperationSign = true;
 	}
 		
 	public void egyenlo() {
 		
-		char lastOperationSignalInHistory = calculationHistoryLabel.getText().charAt(calculationHistoryLabel.getText().length()-1);
+		char lastOperationSignalInHistory = historyLabel.getText().charAt(historyLabel.getText().length()-1);
 		
 		if(lastOperationSignalInHistory=='+') {
-			resultLabel.setText(addition(calculationHistoryLabel.getText()));
+			resultLabel.setText(addition());
 		}
 		if(lastOperationSignalInHistory=='-') {
-			resultLabel.setText(kivonas(calculationHistoryLabel.getText()));
+			resultLabel.setText(substraction());
 		}
 		if(lastOperationSignalInHistory=='/') {
-			resultLabel.setText(osztas(calculationHistoryLabel.getText()));
+			resultLabel.setText(division());
 		}
 		if(lastOperationSignalInHistory=='*') {
-			resultLabel.setText(szorzas(calculationHistoryLabel.getText()));
+			resultLabel.setText(multiplication());
 		}
 		
 		return;
 	}
 	
-	public String addition(String osszeadandok) {
-		/*String[] darabok = osszeadandok.split("\\+");
-		int result = Integer.parseInt(darabok[0]) + Integer.parseInt(darabok[1]); */
-		try {
-			int historyNumber = Integer.parseInt(osszeadandok.substring(0, osszeadandok.length()-1));
-			int resultNumber = Integer.parseInt(resultLabel.getText());
-			int result = historyNumber + resultNumber;
-			if(result>Integer.MAX_VALUE) {
-				return tooBigNumberMsg;
-			}
-			return result+"";
-		}catch(Exception e) {
-			return tooBigNumberMsg;
+	public String addition() {
+		
+		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		BigInteger secondNumber = new BigInteger(resultLabel.getText());
+		BigInteger result = firstNumber.add(secondNumber);
+		
+		return result+"";
+	}
+	
+	public String substraction() {
+		
+		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		BigInteger secondNumber = new BigInteger(resultLabel.getText());
+		BigInteger result = firstNumber.subtract(secondNumber);
+		
+		return result+"";
+	}
+	
+	public String multiplication() {
+
+		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		BigInteger secondNumber = new BigInteger(resultLabel.getText());
+		BigInteger result = firstNumber.multiply(secondNumber);
+		
+		return result+"";
+	}
+	
+	public String division() {
+
+		BigInteger firstNumber = new BigInteger(historyLabel.getText().substring(0, historyLabel.getText().length()-1));
+		
+		if(resultLabel.getText().equals("0")) {
+			return zeroOsztasMsg;
 		}
 		
+		BigInteger secondNumber = new BigInteger(resultLabel.getText());
+		BigInteger result = firstNumber.divide(secondNumber);
+		
+		return result+"";			
 	}
 	
-	public String kivonas(String kivonas) {
-		try {
-			int historyNumber = Integer.parseInt(kivonas.substring(0, kivonas.length()-1));
-			int resultNumber = Integer.parseInt(resultLabel.getText());
-			int result = historyNumber - resultNumber;
-			if(result>Integer.MAX_VALUE) {
-				return tooBigNumberMsg;
+	public void showNumberInResult(String pushedButton) {
+		
+		if(lastActionIsOperationSign) {
+			resultLabel.setText("");
+			resultLabel.setText(resultLabel.getText()+pushedButton);
+			lastActionIsOperationSign = false;
+		}else {
+			if(resultLabel.getText().equals("0")) {
+				resultLabel.setText("");
 			}
-			return result+"";
-		} catch (Exception e) {
-			return tooBigNumberMsg;
+			resultLabel.setText(resultLabel.getText()+pushedButton);
 		}
 	}
-	
-	public String szorzas(String szorzandok) {
-		try {
-			int historyNumber = Integer.parseInt(szorzandok.substring(0, szorzandok.length()-1));
-			int resultNumber = Integer.parseInt(resultLabel.getText());
-			int result = historyNumber * resultNumber;
-			if(result>2147483647) {
-				return tooBigNumberMsg;
-			}
-			return result+"";
-		} catch (NumberFormatException e) {
-			return tooBigNumberMsg;
-		}
-	}
-	
-	public String osztas(String osztandok) {
-		try {
-			int historyNumber = Integer.parseInt(osztandok.substring(0, osztandok.length()-1));
-			int resultNumber = Integer.parseInt(resultLabel.getText());
-			if(resultNumber == 0) {
-				return zeroOsztasMsg;
-			}
-			int result = historyNumber / resultNumber;
-			if(result>2147483647) {
-				return tooBigNumberMsg;
-			}
-			return result+"";
-		} catch (NumberFormatException e) {
-			return tooBigNumberMsg;
-		}
-	}
-	
 }

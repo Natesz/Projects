@@ -17,7 +17,7 @@
                      <font>
                         <Font size="30.0" />
                      </font></Label>
-                  <Label id="calculationHistoryLabel" fx:id="calculationHistoryLabel" alignment="CENTER_RIGHT" layoutY="-1.0" prefHeight="30.0" prefWidth="361.0" />
+                  <Label id="historyLabel" fx:id="historyLabel" alignment="CENTER_RIGHT" layoutY="-1.0" prefHeight="30.0" prefWidth="361.0" />
                </children>
             </Pane>
             <Button id="number7" fx:id="number7" layoutX="19.0" layoutY="147.0" mnemonicParsing="false" onAction="#number7Action" prefHeight="43.0" prefWidth="50.0" text="7">
@@ -36,11 +36,11 @@
             <Button id="number2" fx:id="number2" layoutX="77.0" layoutY="242.0" mnemonicParsing="false" onAction="#number2Action" prefHeight="43.0" prefWidth="50.0" text="2" />
             <Button id="number3" fx:id="number3" layoutX="134.0" layoutY="242.0" mnemonicParsing="false" onAction="#number3Action" prefHeight="43.0" prefWidth="50.0" text="3" />
             <Button id="number0" fx:id="number0" layoutX="20.0" layoutY="291.0" mnemonicParsing="false" onAction="#number0Action" prefHeight="43.0" prefWidth="108.0" text="0" />
-            <Button id="osztas" fx:id="osztas" layoutX="251.0" layoutY="147.0" mnemonicParsing="false" onAction="#osztasAction" prefHeight="43.0" prefWidth="50.0" text="/" />
-            <Button id="szorzas" fx:id="szorzas" layoutX="251.0" layoutY="195.0" mnemonicParsing="false" onAction="#szorzasAction" prefHeight="43.0" prefWidth="50.0" text="*" />
+            <Button id="osztas" fx:id="osztas" layoutX="251.0" layoutY="147.0" mnemonicParsing="false" onAction="#clickDivideButton" prefHeight="43.0" prefWidth="50.0" text="/" />
+            <Button id="szorzas" fx:id="szorzas" layoutX="251.0" layoutY="195.0" mnemonicParsing="false" onAction="#clickMultiplyButton" prefHeight="43.0" prefWidth="50.0" text="*" />
             <Button id="plus" fx:id="plus" layoutX="251.0" layoutY="242.0" mnemonicParsing="false" onAction="#clickPlusButton" prefHeight="43.0" prefWidth="50.0" text="+" />
-            <Button id="egyenlo" fx:id="egyenlo" layoutX="138.0" layoutY="291.0" mnemonicParsing="false" onAction="#egyenloAction" prefHeight="43.0" prefWidth="108.0" text="=" />
-            <Button id="minus" fx:id="minus" layoutX="251.0" layoutY="291.0" mnemonicParsing="false" onAction="#minusAction" prefHeight="43.0" prefWidth="50.0" text="-" />
+            <Button id="egyenlo" fx:id="egyenlo" layoutX="138.0" layoutY="291.0" mnemonicParsing="false" onAction="#clickEqualButton" prefHeight="43.0" prefWidth="108.0" text="=" />
+            <Button id="minus" fx:id="minus" layoutX="251.0" layoutY="291.0" mnemonicParsing="false" onAction="#clickMinusButton" prefHeight="43.0" prefWidth="50.0" text="-" />
             <Button id="clear" fx:id="clear" layoutX="192.0" layoutY="147.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="43.0" prefWidth="50.0" text="C" />
          </children></Pane>
    </children>
