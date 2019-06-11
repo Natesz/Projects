@@ -1,7 +1,15 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.button{
+.orangeButton{
 	-fx-font-weight: bold;
-	-fx-background-color: #2196f3;
+	-fx-background-color: orange;
+	-fx-background-radius: 22;
+	-fx-font-size: 18;
+	-fx-text-fill: white;
+}
+
+ .greyButton{
+	-fx-font-weight: bold;
+	-fx-background-color: grey;
 	-fx-background-radius: 22;
 	-fx-font-size: 18;
 	-fx-text-fill: white;

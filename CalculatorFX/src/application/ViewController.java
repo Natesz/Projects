@@ -8,6 +8,8 @@ import java.math.BigInteger;
 
 public class ViewController {
 	@FXML
+	Button dotAction;
+	@FXML
 	Button clear;
 	@FXML
 	Button number0;
@@ -89,6 +91,22 @@ public class ViewController {
 		showNumberInResult("9");
 	}
 	
+	public void dotAction(ActionEvent event) {
+		boolean isTizedesSzam = false;
+		for(int i=0;i<resultLabel.getText().length();i++) {
+			if(resultLabel.getText().charAt(i)=='.') {
+				isTizedesSzam = true;
+			}
+		}
+		if(!isTizedesSzam) {
+			if(resultLabel.getText().equals("0") || resultLabel.getText().equals(zeroOsztasMsg)) {
+				showNumberInResult("0.");
+			}else {
+				showNumberInResult(".");
+			}
+		}
+	}
+	
 	public void number0Action(ActionEvent event) {
 		if(!resultLabel.getText().equals("0")) {
 			showNumberInResult("0");
@@ -108,10 +126,17 @@ public class ViewController {
 			clearAction(event);
 		}
 	}
+	
+	public void checkIsDotLastChar() {
+		if(resultLabel.getText().charAt(resultLabel.getText().length()-1)=='.'){
+			resultLabel.setText(resultLabel.getText().substring(0,resultLabel.getText().length()-1));
+		}
+	}
 		
 	public void clickPlusButton(ActionEvent event) {
 		checkZeroDivMsg(event);
-				
+		checkIsDotLastChar();
+		
 		if(historyLabel.getText().equals("")) {
 			moveResultToHistory("+");	
 			lastActionIsOperationSign = true;
@@ -127,6 +152,7 @@ public class ViewController {
 	
 	public void clickMinusButton(ActionEvent event) {
 		checkZeroDivMsg(event);
+		checkIsDotLastChar();
 				
 		if(historyLabel.getText().equals("")) {
 			moveResultToHistory("-");	
@@ -145,6 +171,7 @@ public class ViewController {
 	
 	public void clickDivideButton(ActionEvent event) {
 		checkZeroDivMsg(event);
+		checkIsDotLastChar();
 				
 		if(historyLabel.getText().equals("")) {
 			historyLabel.setText(resultLabel.getText()+"/");	
@@ -162,6 +189,7 @@ public class ViewController {
 	
 	public void clickMultiplyButton(ActionEvent event) {
 		checkZeroDivMsg(event);
+		checkIsDotLastChar();
 				
 		if(historyLabel.getText().equals("")) {
 			historyLabel.setText(resultLabel.getText()+"*");	
@@ -195,6 +223,7 @@ public class ViewController {
 	public void egyenlo() {
 		
 		char lastOperationSignalInHistory = historyLabel.getText().charAt(historyLabel.getText().length()-1);
+	
 		
 		if(lastOperationSignalInHistory=='+') {
 			resultLabel.setText(addition());
