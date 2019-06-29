@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="anchor" fx:id="anchor" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewController">
+   <children>
+      <Label layoutX="346.0" text="Monopoly Statistics">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <SplitPane id="mainSplit" fx:id="mainSplit" dividerPositions="0.26588628762541805" layoutY="42.0" prefHeight="612.0" prefWidth="900.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <StackPane id="menuPane" fx:id="menuPane" layoutX="-22.0" prefHeight="610.0" prefWidth="156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="655.0">
+               <children>
+                  <Pane fx:id="gamesPane" prefHeight="610.0" prefWidth="656.0" visible="false">
+                     <children>
+                        <ChoiceBox fx:id="nickCBox3" layoutX="98.0" layoutY="442.0" prefHeight="25.0" prefWidth="98.0" />
+                        <ChoiceBox fx:id="nickCBox4" layoutX="98.0" layoutY="476.0" prefHeight="25.0" prefWidth="98.0" />
+                        <Label layoutX="33.0" layoutY="446.0" text="Player 3" />
+                        <Label layoutX="33.0" layoutY="480.0" text="Player 4" />
+                        <Label layoutX="121.0" layoutY="340.0" text="Nickname" />
+                        <Button fx:id="createGame" layoutX="329.0" layoutY="493.0" mnemonicParsing="false" onAction="#createGameButton" prefHeight="82.0" prefWidth="85.0" text="Create Game" />
+                        <ChoiceBox fx:id="nickCBox2" layoutX="98.0" layoutY="406.0" prefHeight="25.0" prefWidth="98.0" />
+                        <ChoiceBox fx:id="nickCBox1" layoutX="98.0" layoutY="371.0" prefHeight="25.0" prefWidth="98.0" />
+                        <Label layoutX="33.0" layoutY="375.0" text="Player 1" />
+                        <Label layoutX="33.0" layoutY="410.0" text="Player 2" />
+                        <TableView fx:id="gamesTableView" layoutX="-2.0" prefHeight="333.0" prefWidth="656.0" />
+                        <ChoiceBox fx:id="winnerCBox" layoutX="98.0" layoutY="534.0" prefHeight="25.0" prefWidth="98.0" />
+                        <Label layoutX="33.0" layoutY="538.0" text="Winner" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="statPane" prefHeight="610.0" prefWidth="656.0" visible="false">
+                     <children>
+                        <ChoiceBox fx:id="winnerStatCBox" layoutX="148.0" layoutY="485.0" prefWidth="150.0" />
+                        <TableView fx:id="statsTableView" prefHeight="444.0" prefWidth="656.0" />
+                        <Label layoutX="26.0" layoutY="489.0" text="Statistics by winner" />
+                        <Button fx:id="showStatistics" layoutX="360.0" layoutY="485.0" mnemonicParsing="false" onAction="#showStatistics" prefHeight="65.0" prefWidth="98.0" text="Show Statistics" />
+                        <Button layoutX="360.0" layoutY="564.0" mnemonicParsing="false" onAction="#resetStats" prefHeight="25.0" prefWidth="98.0" text="Reset Statistics" />
+                     </children>
+                  </Pane>
+                  <Pane id="exportPane" fx:id="exportPane" prefHeight="610.0" prefWidth="436.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="247.0" layoutY="37.0" prefHeight="40.0" prefWidth="162.0" text="Export Stats to PDF" textAlignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <Button layoutX="271.0" layoutY="218.0" mnemonicParsing="false" onAction="#exportButton" prefHeight="25.0" prefWidth="79.0" text="Export" />
+                        <TextField fx:id="exportTextField" layoutX="229.0" layoutY="174.0" prefHeight="25.0" prefWidth="162.0" />
+                        <Label layoutX="283.0" layoutY="141.0" text="File name:" />
+                     </children></Pane>
+                  <Pane id="playersPane" fx:id="playersPane" layoutX="10.0" layoutY="10.0" prefHeight="610.0" prefWidth="436.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TableView fx:id="table" editable="true" prefHeight="484.0" prefWidth="656.0">
+                          <placeholder>
+                          	<Label text="no player" />                          
+                          </placeholder>
+                          <columns>
+                            
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="inputName" layoutX="125.0" layoutY="498.0" />
+                        <TextField fx:id="inputNick" layoutX="125.0" layoutY="533.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="500.0" prefHeight="17.0" prefWidth="71.0" text="Player Name" textAlignment="RIGHT" />
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="35.0" layoutY="535.0" prefHeight="17.0" prefWidth="71.0" text="Nickname" textAlignment="RIGHT" />
+                        <Button fx:id="addNewContactButton" layoutX="285.0" layoutY="511.0" mnemonicParsing="false" onAction="#addNewContactButton" prefHeight="25.0" prefWidth="137.0" text="Create New Player" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
